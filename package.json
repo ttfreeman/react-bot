@@ -8,11 +8,18 @@
     "npm": "6.4.1"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "backend": "nodemon index.js"
   },
   "author": "Tony Freeman",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/storage": "^2.3.1",
+    "body-parser": "^1.18.3",
+    "dialogflow": "^0.7.0",
     "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.7"
   }
 }

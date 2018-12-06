@@ -1,0 +1,1 @@
+GOOGLE_APPLICATION_CREDENTIALS="D:\GDrive\Dev\Keys\react-chatbot-fb45c8f8db9c.json"
