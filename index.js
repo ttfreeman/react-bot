@@ -2,6 +2,8 @@ const express = require("express");
 const structjson = require("./structjson");
 const bodyParser = require("body-parser");
 
+const config = require("./config/dev");
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -12,16 +14,21 @@ app.get("/", (req, res) => {
 
 app.post("/api/df_text_query", async (req, res) => {
   // You can find your project ID in your Dialogflow agent settings
-  process.env.GOOGLE_APPLICATION_CREDENTIALS =
-    "./../../../Keys/react-chatbot-fb45c8f8db9c.json";
-  const projectId = "react-chatbot-6d094"; //https://dialogflow.com/docs/agents#settings
-  const sessionId = "react-bot-session";
+  const projectId = config.projectID; //https://dialogflow.com/docs/agents#settings
+  const sessionId = config.sessionID;
+  const credentials = {
+    private_key: config.private_key,
+    client_email: config.client_email
+  };
 
   const languageCode = "en-US";
 
   // Instantiate a DialogFlow client.
   const dialogflow = require("dialogflow");
-  const sessionClient = new dialogflow.SessionsClient();
+  const sessionClient = new dialogflow.SessionsClient({
+    projectId,
+    credentials
+  });
 
   // Define session path
   const sessionPath = sessionClient.sessionPath(projectId, sessionId);
